@@ -1,0 +1,102 @@
+.img-catalogue-searchbar {
+	border-radius: 45px;
+	max-height: 120px;
+	max-width: 120px;
+}
+.buttons-cmdlist {
+	border: none;
+	border-radius: 8px;
+	background-color: #FFF000;
+}
+
+.buttons-cmdlist:hover {
+	border: none;
+	border-radius: 8px;
+	background-color: #FF6B01;
+}
+.cmd-th {
+    font-family: Arial, Helvetica, sans-serif;
+    color: #FF6B01;
+}
+
+.form-group-insert {
+  float: left;
+  width: 50%;
+  padding: 10px;
+  height: 500px;
+}
+
+.row_cmd_submit:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+#cmd-trash, #link-cmd-trash {
+  background-color: #FF4500;
+}
+
+.tags-catalogue
+{
+    table-layout: fixed;
+    width: 35%;
+}
+.asteriskField {
+    display: none;
+}
+#div_id_catalogue,#div_id_environment,#div_id_opmode,#div_id_command {
+    color: red;
+}
+
+select {
+   box-sizing: border-box;
+  // A reset of styles, including removing the default dropdown arrow
+  appearance: none;
+  background-color: transparent;
+  height: 40px;
+  border-radius: 5px;
+  padding: 0 1em 0 0;
+  margin: 0;
+  width: 100%;
+  font-family: inherit;
+  font-size: inherit;
+  cursor: inherit;
+  line-height: inherit;
+
+  // Stack above custom arrow
+  z-index: 1;
+
+  // Remove dropdown arrow in IE10 & IE11
+  // @link https://www.filamentgroup.com/lab/select-css.html
+  &::-ms-expand {
+    display: none;
+  }
+
+  // Remove focus outline, will add on alternate element
+  outline: none;
+}
+.starter-template div {
+    float: left;
+    clear: none;
+  }
+#tag-button {
+    background-color: #FEF000;
+  }
+.view-container {
+  position: relative;
+  height: 100px;
+
+}
+.text-tags {
+padding-top:5px
+}
+.command-align{
+    display: inline;
+}
+#cmd-descr{
+    position: relative;
+    padding-bottom: 5%;
+}
+#cmd-refs{
+    text-align:left
+}

@@ -1,0 +1,40 @@
+{% extends 'base.html'  %}
+
+{% block title %} | {{ catalogue }} {% endblock %}
+
+{% block content %}
+
+
+<table class="table table-striped table-hover">
+    <thead>
+        <tr>
+            <th class="cmd-th"scope="col">#</th>
+ 		    <th class="cmd-th" scope="col">COMMAND</th>
+            <th class="cmd-th" scope="col">ENVIRONMENT</th>
+		    <th class="cmd-th" scope="col">TAGS</th>
+		    <th></th>
+        </tr>
+    </thead>
+        <tbody>
+		    {% for command in catalogue_cmds  %}
+		        <tr>
+		            <td>{{forloop.counter}}</td>
+		            <td><input type="text" value="{{command.command}}" id="cp-cmd" readonly></td>
+		            <td>{{command.environment}}</td>
+		            <td class="tags-catalogue">
+                        <small>
+                        {% for tag in command.tags.all %}
+                            &ensp;{{tag}}&ensp;
+                        {%endfor%}
+                        </small>
+                    </td>
+                    <td>
+                        <button class="buttons-cmdlist"> <a class="btn btn-light" title="view details" href="{% url 'viewcmd'  command.id%}">VIEW</a></button>
+                    </td>
+                </tr>
+		    {%endfor%}
+        </tbody>
+</table>
+
+
+{% endblock  %}
