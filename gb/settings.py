@@ -19,13 +19,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-x(eo+#z^1^992xgssz!sl*g-w*401ln5jg(ac*nj8&yr&j=tud'
 
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-
-ALLOWED_HOSTS = ['127.0.0.1']
 
 #ADMIN_ENABLED = False
 # Application definition
@@ -83,19 +77,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'gb.wsgi.application'
 
-
-# Database
-# https://docs.djangoproject.com/en/4.1/ref/settings/#databases
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'gbdb',
-        'USER': 'postgres',
-        'PASSWORD':'postgres',
-        'HOST':'mycroftlnx1.goldenbyte.it'
-    }
-}
 
 
 # Password validation
@@ -181,3 +162,8 @@ EMAIL_HOST_PASSWORD = env('SENDGRID_API_KEY')
 # The email you'll be sending emails from
 DEFAULT_FROM_EMAIL = env('FROM_EMAIL', default='noreply@goldenbyte.it')
 LOGIN_REDIRECT_URL = 'success'
+
+try:
+    from .local_settings import *
+except ImportError:
+    pass
