@@ -25,7 +25,6 @@ urlpatterns = [
     re_path(r'cmd/',include('clicommands.urls')),
     path('admin/', admin.site.urls),
     re_path(r"^chaining/", include("smart_selects.urls")),
-    path('captcha/', include('captcha.urls')),
 ]  + static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
 
 handler404 = 'landingpage.views.error_404_view'

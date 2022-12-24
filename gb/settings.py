@@ -39,11 +39,10 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'taggit',
-    "captcha",
     'smart_selects',
     'crispy_forms',
-    "crispy_bootstrap5",
-    "users"
+    'crispy_bootstrap5',
+    'users'
 ]
 
 
