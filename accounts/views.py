@@ -32,7 +32,7 @@ class SignUpView(CreateView):
 
 class ActivateView(RedirectView):
 
-    url = reverse_lazy('dashboard')
+    url = reverse_lazy('success')
 
     # Custom get method
     def get(self, request, uidb64, token):
@@ -70,7 +70,7 @@ def login(request):
 
             auth.login(request, user)
             messages.success(request, 'You are now logged in')
-            return redirect('success')
+            return redirect('dashboard')
         else:
             messages.error(request, 'Invalid Credentials')
             return redirect('login')
