@@ -2,7 +2,7 @@ from django.contrib import admin
 
 # Register your models here.
 
-from .models import Catalogue,Keywords
+from .models import Catalogue,Keywords,Category
 
 class CatalogueAdmin(admin.ModelAdmin):
     list_display = ('id','title','category','is_published')
@@ -13,6 +13,10 @@ class CatalogueAdmin(admin.ModelAdmin):
 class KeywordAdmin(admin.ModelAdmin):
     list_display = ('id','name','keywords')
 
+class CategoryAdmin(admin.ModelAdmin):
+    list_display = ('id','name')
+
 
 admin.site.register(Catalogue,CatalogueAdmin)
 admin.site.register(Keywords,KeywordAdmin)
+admin.site.register(Category,CategoryAdmin)
