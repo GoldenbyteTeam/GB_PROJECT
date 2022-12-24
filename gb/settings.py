@@ -166,4 +166,5 @@ LOGIN_REDIRECT_URL = 'success'
 try:
     from .local_settings import *
 except ImportError:
+    print('local settings file not found!')
     pass
