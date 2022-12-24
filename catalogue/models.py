@@ -15,6 +15,8 @@ class Keywords(models.Model):
 class Category(models.Model):
     name = models.CharField(max_length=100,null=False,default="Others")
     not_empty = models.BooleanField(default=True)
+    class Meta:                             #fix plural name in django administration
+        verbose_name_plural = "categories"
     def __str__(self):
         return self.name
 
