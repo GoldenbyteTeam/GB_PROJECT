@@ -176,3 +176,5 @@ cython_debug/
 # End of https://www.toptal.com/developers/gitignore/api/django
 /static
 /media
+#DB setting of motivationalquotes
+quotes_config.ini
