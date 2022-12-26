@@ -13,13 +13,13 @@ from psycopg2 import Error
 import configparser
 import sys,random
 
-RangeIndex = []			#Lista degli indici da cui verrà pecsato il quote causale
+RangeIndex = []			# quote's index list
 Categories = ['change','computers','courage','failure','fear','inspirational','learning']
 
 # Connect to MariaDB Platform
 
 config = configparser.ConfigParser()
-config.read('quotes_config.ini')                       #Read Credentials of DB
+config.read('quotes_config.ini')                       #Read DB settings
 
 try:
     conn = psycopg2.connect(user=config['postgres']['user'],
