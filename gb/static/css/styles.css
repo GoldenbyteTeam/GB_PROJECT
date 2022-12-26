@@ -251,6 +251,7 @@ textarea {
   font-family: inherit;
   font-size: inherit;
   line-height: inherit;
+  width:100%;
 }
 
 button,
@@ -488,7 +489,7 @@ mark,
   height: auto;
   border-radius: 10%;
   width: 450px;
-  height: 330px;
+  height: auto;
   padding: 15px;
 
 } 
