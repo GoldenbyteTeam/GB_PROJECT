@@ -1,9 +1,12 @@
 """
 Write motivational quotes.
 
+Crontab Job at 00.00 every day
+
 Doc https://github.com/GoldenbyteGH/PickMotivationalQuotes
 
 """
+import os
 
 import psycopg2
 from psycopg2 import Error
@@ -58,3 +61,6 @@ f_author.close()
 
 cur.close()
 conn.close()
+
+#Restart Gunicorn
+os.system("sudo /bin/systemctl restart gunicorn")
