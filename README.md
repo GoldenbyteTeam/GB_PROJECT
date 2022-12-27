@@ -21,7 +21,6 @@ All the configurations are stored in these files:
   ```
 * gb/local_settings.py
   ```
-    !
     SECRET_KEY = <django-key>
 
     # SECURITY WARNING: don't run with debug turned on in production!
