@@ -9,3 +9,46 @@ and [Fruitionsite](https://fruitionsite.com/Fruition-Free-Open-Source-Toolkit-fo
 Goldenbyte.it is an open project. But, it can be deployed privately among teams members based on specific catalogues.
 
 ---
+### Requirements and configuration
+Install all requirements
+`pip install -r requirements.txt`
+All the configurations are stored in these files:
+- .env
+  ```
+    SENDGRID_API_KEY=<Token>
+    # SendGrid Sender Identity
+    FROM_EMAIL=<sender_mail>
+  ```
+  * gb/local_settings.py
+    ```
+      !
+      SECRET_KEY = <django-key>
+
+      # SECURITY WARNING: don't run with debug turned on in production!
+      DEBUG = True
+
+      ALLOWED_HOSTS = [<IP_SRV>]
+
+      # Database
+      # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
+
+      DATABASES = {
+      'default': {
+          'ENGINE': 'django.db.backends.postgresql', #postgresDB
+          'NAME': <DBname>,
+          'USER': <DBuser>,
+          'PASSWORD':<DBpassword>,
+          'HOST': <DBhost>
+      }
+    }
+  ```
++ quotes_config.ini (Optional)
+  ```
+  [postgres]
+  host = mycroftlnx1.goldenbyte.it
+  db = <DBname> #It should be different from mainDB
+  user = <DBuser>
+  psw = <DBpassword>
+
+  ```
+  
