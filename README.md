@@ -9,7 +9,7 @@ and [Fruitionsite](https://fruitionsite.com/Fruition-Free-Open-Source-Toolkit-fo
 Goldenbyte.it is an open project. But, it can be deployed privately among teams members based on specific catalogues.
 
 ---
-### Requirements and configuration
+### Configuration requirements
 Install all requirements
 `pip install -r requirements.txt`
 All the configurations are stored in these files:
