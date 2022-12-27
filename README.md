@@ -19,28 +19,28 @@ All the configurations are stored in these files:
     # SendGrid Sender Identity
     FROM_EMAIL=<sender_mail>
   ```
-  * gb/local_settings.py
-    ```
-      !
-      SECRET_KEY = <django-key>
+* gb/local_settings.py
+  ```
+    !
+    SECRET_KEY = <django-key>
 
-      # SECURITY WARNING: don't run with debug turned on in production!
-      DEBUG = True
+    # SECURITY WARNING: don't run with debug turned on in production!
+    DEBUG = True
 
-      ALLOWED_HOSTS = [<IP_SRV>]
+    ALLOWED_HOSTS = [<IP_SRV>]
 
-      # Database
-      # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
+    # Database
+    # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
-      DATABASES = {
-      'default': {
-          'ENGINE': 'django.db.backends.postgresql', #postgresDB
-          'NAME': <DBname>,
-          'USER': <DBuser>,
-          'PASSWORD':<DBpassword>,
-          'HOST': <DBhost>
-      }
+    DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql', #postgresDB
+        'NAME': <DBname>,
+        'USER': <DBuser>,
+        'PASSWORD':<DBpassword>,
+        'HOST': <DBhost>
     }
+  }
   ```
 + quotes_config.ini (Optional)
   ```
