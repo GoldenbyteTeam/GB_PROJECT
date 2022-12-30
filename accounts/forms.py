@@ -19,16 +19,14 @@ user_model = get_user_model()
 #     captcha = CaptchaField()
 
 class SignUpForm(UserCreationForm):
-
-
-    email = forms.EmailField(
-        max_length=254, help_text='Enter a valid email address')
-
     def clean_email(self):
         email = self.cleaned_data.get('email')
         if User.objects.filter(email=email).exists():
             raise forms.ValidationError('That email is being used')
         return email
+
+    email = forms.EmailField(
+        max_length=254, help_text='Enter a valid email address')
 
     class Meta:
         model = user_model
