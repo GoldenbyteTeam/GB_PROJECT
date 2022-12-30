@@ -1,3 +1,5 @@
+#!/usr/bin/python3
+
 """
 Write motivational quotes.
 
@@ -7,7 +9,6 @@ Doc https://github.com/GoldenbyteGH/PickMotivationalQuotes
 
 """
 import os
-
 import psycopg2
 from psycopg2 import Error
 import configparser
