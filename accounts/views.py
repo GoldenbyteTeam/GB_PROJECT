@@ -16,10 +16,10 @@ from .forms import SignUpForm, token_generator, user_model
 # Create your views here.
 ####################################################################
 class SignUpView(CreateView):
+
     form_class = SignUpForm
     template_name = 'accounts/signup.html'
     success_url = reverse_lazy('check_email')
-
 
     def form_valid(self, form):
         to_return = super().form_valid(form) #"""If the form is valid, redirect to the supplied URL."""
@@ -27,16 +27,13 @@ class SignUpView(CreateView):
         user.is_active = False  # Turns the user status to inactive
         user.save()
         form.send_activation_email(self.request, user)
-
         return to_return
 
 class ActivateView(RedirectView):
-
     url = reverse_lazy('success')
 
     # Custom get method
     def get(self, request, uidb64, token):
-
         try:
             uid = force_str(urlsafe_base64_decode(uidb64))
             user = user_model.objects.get(pk=uid)

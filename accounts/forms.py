@@ -1,7 +1,7 @@
 from django import forms
 # from captcha.fields import CaptchaField
 
-
+from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.sites.shortcuts import get_current_site
 from django.contrib.auth import get_user_model
@@ -20,8 +20,15 @@ user_model = get_user_model()
 
 class SignUpForm(UserCreationForm):
 
+
     email = forms.EmailField(
         max_length=254, help_text='Enter a valid email address')
+
+    def clean_email(self):
+        email = self.cleaned_data.get('email')
+        if User.objects.filter(email=email).exists():
+            raise forms.ValidationError('That email is being used')
+        return email
 
     class Meta:
         model = user_model
@@ -31,8 +38,8 @@ class SignUpForm(UserCreationForm):
             'password1',
             'password2',
         ]
+        # We need the user object, so it's an additional parameter
 
-    # We need the user object, so it's an additional parameter
     def send_activation_email(self, request, user):
         current_site = get_current_site(request)
         subject = 'Activate Your Account'
