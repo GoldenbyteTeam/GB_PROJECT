@@ -13,14 +13,16 @@ import psycopg2
 from psycopg2 import Error
 import configparser
 import sys,random
+from gb.settings import BASE_DIR
 
 RangeIndex = []			# quote's index list
 Categories = ['change','computers','courage','failure','fear','inspirational','learning']
 
 # Connect to DB
 
+
 config = configparser.ConfigParser()
-config.read('quotes_config.ini')                       #Read DB settings
+config.read(os.path.join(BASE_DIR,'quotes_config.ini'))                       #Read DB settings
 
 try:
     conn = psycopg2.connect(user=config['postgres']['user'],
