@@ -15,7 +15,7 @@ from psycopg2 import Error
 import configparser
 import sys,random
 
-BASE_DIR = Path(__file__).resolve().parent.parent
+BASE_DIR = Path(__file__).resolve().parent
 RangeIndex = []			# quote's index list
 Categories = ['change','computers','courage','failure','fear','inspirational','learning']
 
@@ -54,8 +54,8 @@ query = 'SELECT quotes,author FROM motquotes WHERE id = '+str(IDQuote)
 cur.execute(query)
 myresult = cur.fetchall()
 
-f_quote  = open("templates/pages/quotes.html", "w")
-f_author = open("templates/pages/author.html", "w")
+f_quote  = open(os.path.join(BASE_DIR,"templates/pages/quotes.html", "w"))
+f_author = open(os.path.join(BASE_DIR,"templates/pages/author.html", "w"))
 f_quote.write(str(myresult[0][0]))
 f_author.write(str(myresult[0][1]))
 f_quote.close()
