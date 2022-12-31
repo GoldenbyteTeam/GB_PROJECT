@@ -9,18 +9,17 @@ Doc https://github.com/GoldenbyteGH/PickMotivationalQuotes
 
 """
 import os
+from pathlib import Path
 import psycopg2
 from psycopg2 import Error
 import configparser
 import sys,random
-from gb.settings import BASE_DIR
 
+BASE_DIR = Path(__file__).resolve().parent.parent
 RangeIndex = []			# quote's index list
 Categories = ['change','computers','courage','failure','fear','inspirational','learning']
 
 # Connect to DB
-
-
 config = configparser.ConfigParser()
 config.read(os.path.join(BASE_DIR,'quotes_config.ini'))                       #Read DB settings
 
