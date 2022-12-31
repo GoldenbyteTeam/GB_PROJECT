@@ -17,7 +17,7 @@ import sys,random
 RangeIndex = []			# quote's index list
 Categories = ['change','computers','courage','failure','fear','inspirational','learning']
 
-# Connect to MariaDB Platform
+# Connect to DB
 
 config = configparser.ConfigParser()
 config.read('quotes_config.ini')                       #Read DB settings
@@ -30,7 +30,7 @@ try:
                      database=config['postgres']['db'])
 
 except (Exception, Error) as error:
-    print(f"Error connecting to MariaDB Platform: {error}")
+    print(f"Error connecting to DB: {error}")
     sys.exit(1)
 
 
