@@ -86,7 +86,7 @@ var header = document.getElementById("dheader");
 var sticky = header.offsetTop;
 
 
-// Copy-Commands
+// Copy-Commands (not used yet )
 function CopyCMD() {
          // Get the text field
          var copyText = document.getElementById("cp-cmd");
@@ -101,4 +101,3 @@ function CopyCMD() {
 	// Alert the copied text
   alert("Copied the text: " + copyText.value);
 }
-
