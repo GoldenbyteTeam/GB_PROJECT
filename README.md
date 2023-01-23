@@ -44,7 +44,7 @@ All the configurations are stored in these files:
 + quotes_config.ini (Optional)
   ```
   [postgres]
-  host = [<IP_SRV_DB>]
+  host = <IP_SRV_DB>
   db = <DBname> #It should be different from mainDB
   user = <DBuser>
   psw = <DBpassword>
