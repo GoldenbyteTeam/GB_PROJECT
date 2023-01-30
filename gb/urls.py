@@ -13,17 +13,37 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+from os.path import join
 from django.contrib import admin
 from django.urls import path,include,re_path
 from django.conf import settings
 from django.conf.urls.static import static
+import random
+
+from .settings import BASE_DIR
+
+fquotes_lenght=0
+try:
+    with open(join(join(join(BASE_DIR,'templates'),'pages'),'quotes.html'), "r") as f:
+        fquotes_lenght = len(f.read())
+except:
+    pass
+
+try:
+    from .local_settings import gb_admin_page
+except ImportError:
+    print('local settings file not found!')
+    pass
+if fquotes_lenght > 0:
+    hash = random.getrandbits(fquotes_lenght)
+
 
 urlpatterns = [
     path('', include('landingpage.urls')),
     path('accounts/',include('accounts.urls')),
     path('catalogue/',include('catalogue.urls')),
     re_path(r'cmd/',include('clicommands.urls')),
-    path('admin/', admin.site.urls),
+    path('{}_{}/'.format(hash,gb_admin_page), admin.site.urls),
     re_path(r"^chaining/", include("smart_selects.urls")),
 ]  + static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
 

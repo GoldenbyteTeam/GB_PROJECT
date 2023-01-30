@@ -48,6 +48,9 @@
                 {% if user.is_authenticated  and 'check' not in request.path and 'MTM' not in request.path %}
 
                     <li class="nav-item"><a class="nav-link js-scroll-trigger" href="{% url 'dashboard' %}"> Welcome {{user.username}} (Dashboard)</a></li>
+                    {% if user.is_staff %}
+                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="{% url 'admin:index'%}"><i class="fas fa-toolbox"></i> Administration</a></li>
+                    {%endif%}
                     <li class="nav-item"><a href="javascript:{document.getElementById('logout').submit()}" class="nav-link"><i class="fas fa-sign-out-alt"></i> Logout </a></li>
 
                     <form action="{%url 'logout'%}" method="POST" id="logout">
