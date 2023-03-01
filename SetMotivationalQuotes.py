@@ -44,10 +44,10 @@ query = ("(SELECT id FROM motquotes WHERE category =  '"+RandomCategory+"' order
 
 cur.execute(query)
 myresult = cur.fetchall()
-
+print(myresult)
 for x in myresult:
-  RangeIndex.append(x[0])
-
+  RangeIndex.append(x[0])   # 'cur' return a tuple of 2 elements, the value and an empty element (es. [(7608,), (7873,)])
+print(RangeIndex)
 IDQuote = random.randint(RangeIndex[0],RangeIndex[1])
 
 query = 'SELECT quotes,author FROM motquotes WHERE id = '+str(IDQuote)

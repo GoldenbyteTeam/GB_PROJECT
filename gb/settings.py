@@ -32,6 +32,7 @@ INSTALLED_APPS = [
     'explorer.apps.ExplorerConfig',
     'landingpage.apps.LandingpageConfig',
     'opmode.apps.OpmodeConfig',
+    #'gb_profile.apps.GbProfileConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

@@ -1,4 +1,6 @@
-from django.urls import path
+from django.urls import path,re_path,include
+
+
 from . import views
 
 from .views import (
@@ -14,6 +16,8 @@ urlpatterns = [
     path('logout',views.logout, name='logout'),
     path('dashboard',views.dashboard, name='dashboard'),
     path('signup/', SignUpView.as_view(), name="signup"),
+    path('profile/', views.profile, name="users-profile"),
+    path('edit_profile/', views.edit_profile, name="edit_profile"),
     path('activate/<uidb64>/<token>/', ActivateView.as_view(), name="activate"),
     path('check-email/', CheckEmailView.as_view(), name="check_email"),
     path('success/', SuccessView.as_view(), name="success"),

@@ -1,17 +1,23 @@
 from django.shortcuts import redirect,render
+
 from django.contrib import messages,auth
 from django.contrib.auth.models import User
+from django.contrib.auth.decorators import login_required
+
 from clicommands.models import Command
 from catalogue.models import Catalogue
 from opmode.models import Opmode
 
 from django.views.generic import CreateView, TemplateView, RedirectView
 
+
 from django.urls import reverse_lazy
+
 from django.utils.http import urlsafe_base64_decode
 from django.utils.encoding import force_str # force_text on older versions of Django
 
-from .forms import SignUpForm, token_generator, user_model
+from .forms import SignUpForm, token_generator, user_model, EditProfileInfoForm
+#from .models import Profile
 
 # Create your views here.
 ####################################################################
@@ -96,6 +102,34 @@ def dashboard(request):
         return render(request, 'accounts/dashboard.html',context)
     else:
         return redirect('login')
+@login_required
+def profile(request):
+    profile = request.user.profile
+    context = {
+        'profile':profile
+    }
+    return render(request,'accounts/profile.html',context)
 
+@login_required
+def edit_profile(request):
+    profile = request.user.profile
+    if request.method != "POST":
+        Profileform = EditProfileInfoForm(instance=profile)
+        context = {
+            'avatar': profile.avatar,
+            'profile': profile,
+            'form': Profileform
+        }
+        return render(request, 'accounts/updateprofile.html', context)
+    else:
+        Profileform = EditProfileInfoForm(request.POST,instance=profile)
+        if Profileform.is_valid():
+            Profileform.save()
+        return redirect('edit_profile')
 
-
+# def save_profile(request):
+#     if request.method == "POST":
+#         form = EditProfileInfoForm(request.POST)
+#         if form.is_valid():
+#             form.save()
+#     return redirect('profile')

@@ -1,7 +1,9 @@
 from django import forms
+from django.forms import ModelForm
 # from captcha.fields import CaptchaField
 
 from django.contrib.auth.models import User
+from django.contrib.auth import get_user_model
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.sites.shortcuts import get_current_site
 from django.contrib.auth import get_user_model
@@ -11,6 +13,8 @@ from django.utils.http import urlsafe_base64_encode
 from django.template.loader import render_to_string
 
 from .token import token_generator
+
+from .models import Profile
 
 
 user_model = get_user_model()
@@ -51,3 +55,8 @@ class SignUpForm(UserCreationForm):
             }
         )
         user.email_user(subject, message, html_message=message)
+class EditProfileInfoForm(ModelForm):
+    class Meta:
+        model = Profile
+        fields = '__all__'
+        exclude = ['user','avatar'] #avatar cannot be uploaded
