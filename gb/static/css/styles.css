@@ -165,6 +165,7 @@ sup {
 }
 
 a {
+  cursor: default; important
   color: #f4623a;
   text-decoration: none;
   background-color: transparent;

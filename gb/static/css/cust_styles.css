@@ -1,3 +1,4 @@
+
 .img-catalogue-searchbar {
 	border-radius: 45px;
 	max-height: 120px;
@@ -60,7 +61,7 @@ select {
   width: 100%;
   font-family: inherit;
   font-size: inherit;
-  cursor: inherit;
+  cursor: default;
   line-height: inherit;
 
   // Stack above custom arrow
