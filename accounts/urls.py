@@ -21,7 +21,7 @@ urlpatterns = [
     path('edit_profile/', views.edit_profile, name="edit_profile"),
     path('activate/<uidb64>/<token>/', ActivateView.as_view(), name="activate"),
     path('check-email/', CheckEmailView.as_view(), name="check_email"),
-    path('password/', views.CustomPasswordChangeView.as_view(template_name='change-password.html'), name="password"),
+    path('password/', views.CustomPasswordChangeView.as_view(), name="password"),
     path('password_success/',views.profile,name="password_change_done"),
     path('success/', SuccessView.as_view(), name="success"),
 ]

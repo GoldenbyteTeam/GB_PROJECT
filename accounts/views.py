@@ -129,6 +129,7 @@ def edit_profile(request):
 
 class CustomPasswordChangeView(PasswordChangeView):
     form_class = CustomChangingPassword
+    template_name = 'change-password.html'
     def form_valid(self, form):
         messages.success(self.request, 'Your password has been changed.')
         return super().form_valid(form)
