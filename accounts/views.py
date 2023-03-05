@@ -127,13 +127,6 @@ def edit_profile(request):
             Profileform.save()
         return redirect('edit_profile')
 
-# def save_profile(request):
-#     if request.method == "POST":
-#         form = EditProfileInfoForm(request.POST)
-#         if form.is_valid():
-#             form.save()
-#     return redirect('profile')
-
 class CustomPasswordChangeView(PasswordChangeView):
     form_class = CustomChangingPassword
     def form_valid(self, form):
