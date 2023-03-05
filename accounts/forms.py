@@ -7,6 +7,7 @@ from django.contrib.auth import get_user_model
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.sites.shortcuts import get_current_site
 from django.contrib.auth import get_user_model
+from django.contrib.auth.forms import PasswordChangeForm
 from django.utils.encoding import force_bytes
 from django.utils.http import urlsafe_base64_encode
 
@@ -60,3 +61,16 @@ class EditProfileInfoForm(ModelForm):
         model = Profile
         fields = '__all__'
         exclude = ['user','avatar'] #avatar cannot be uploaded
+
+class CustomChangingPassword(PasswordChangeForm):
+
+    old_password = forms.CharField(widget=forms.PasswordInput(attrs={'type':'password'}))
+    new_password1 = forms.CharField(widget=forms.PasswordInput(attrs={'type':'password'}))
+    new_password2 = forms.CharField(widget=forms.PasswordInput(attrs={'type':'password'}))
+    class Meta:
+        model = User
+        fields = [
+            'old_password',
+            'new_password1',
+            'new_password2',
+        ]

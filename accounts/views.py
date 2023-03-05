@@ -1,7 +1,7 @@
 from django.shortcuts import redirect,render
 
 from django.contrib import messages,auth
-from django.contrib.auth.models import User
+from django.contrib.auth.views import PasswordChangeView
 from django.contrib.auth.decorators import login_required
 
 from clicommands.models import Command
@@ -16,7 +16,7 @@ from django.urls import reverse_lazy
 from django.utils.http import urlsafe_base64_decode
 from django.utils.encoding import force_str # force_text on older versions of Django
 
-from .forms import SignUpForm, token_generator, user_model, EditProfileInfoForm
+from .forms import SignUpForm, token_generator, user_model, EditProfileInfoForm, CustomChangingPassword
 #from .models import Profile
 
 # Create your views here.
@@ -133,3 +133,12 @@ def edit_profile(request):
 #         if form.is_valid():
 #             form.save()
 #     return redirect('profile')
+
+class CustomPasswordChangeView(PasswordChangeView):
+    form_class = CustomChangingPassword
+    def form_valid(self, form):
+        messages.success(self.request, 'Your password has been changed.')
+        return super().form_valid(form)
+    def form_invalid(self, form):
+        messages.error(self.request, 'Your password has NOT been changed.')
+        return super().form_invalid(form)
