@@ -18,35 +18,36 @@ from django.contrib import admin
 from django.urls import path,include,re_path
 from django.conf import settings
 from django.conf.urls.static import static
-from .settings import BASE_DIR
-import random
+# from .settings import BASE_DIR
+# import random
 
-def get_hash_from_quotes(hash_lenght,templates_dir='templates',templetase_subdir='pages', quote_file='quotes.html'):
-
-    try:
-        with open(join(join(join(BASE_DIR,templates_dir),templetase_subdir),quote_file), "r") as f:
-            fquotes_lenght = len(f.read())
-    except:
-        pass
-
-    if fquotes_lenght > 0:
-        hash = random.getrandbits(fquotes_lenght)
-
-    return str(hash)[:hash_lenght]
-
-
-try:
-    from .local_settings import gb_admin_page
-except ImportError:
-    print('local settings file not found!!')
-    pass
+# def get_hash_from_quotes(hash_lenght,templates_dir='templates',templetase_subdir='pages', quote_file='quotes.html'):
+#
+#     try:
+#         with open(join(join(join(BASE_DIR,templates_dir),templetase_subdir),quote_file), "r") as f:
+#             fquotes_lenght = len(f.read())
+#     except:
+#         pass
+#
+#     if fquotes_lenght > 0:
+#         hash = random.getrandbits(fquotes_lenght)
+#
+#     return str(hash)[:hash_lenght]
+#
+#
+# try:
+#     from .local_settings import gb_admin_page
+# except ImportError:
+#     print('local settings file not found!!')
+#     pass
 
 urlpatterns = [
     path('', include('landingpage.urls')),
     path('accounts/',include('accounts.urls')),
     path('catalogue/',include('catalogue.urls')),
     re_path(r'cmd/',include('clicommands.urls')),
-    path('{}_{}/'.format(get_hash_from_quotes(hash_lenght=10),gb_admin_page), admin.site.urls),
+    #path('{}_{}/'.format(get_hash_from_quotes(hash_lenght=10),gb_admin_page), admin.site.urls),
+    path('admin/',admin.site.urls),
     re_path(r"^chaining/", include("smart_selects.urls")),
 ]  + static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
 

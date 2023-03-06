@@ -11,6 +11,8 @@ from .views import (
     SuccessView,
 )
 
+print(auth_views.PasswordResetView)
+
 
 urlpatterns = [
     path('login',views.login, name='login'),
@@ -23,6 +25,7 @@ urlpatterns = [
     path('check-email/', CheckEmailView.as_view(), name="check_email"),
     path('password/', views.CustomPasswordChangeView.as_view(), name="password"),
     path('password_success/',views.profile,name="password_change_done"),
+    path('password_reset/', auth_views.PasswordResetView.as_view(), name="'password_reset'"),
     path('success/', SuccessView.as_view(), name="success"),
 ]
 
