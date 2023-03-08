@@ -50,8 +50,10 @@ def addcmd(request):
 
 
 def viewcmd(request,command_id):
+
     command = get_object_or_404(Command, pk=command_id)
     keywords = get_object_or_404(Keywords, name=command.environment)
+
     cmd_parsing_list = []
     for item in command.command.split(" "):
         cmd_parsing_list.append(item)
@@ -70,7 +72,7 @@ def viewcmd(request,command_id):
         'new': new,
         'command': command,
         'cmd_parsing_list':cmd_parsing_list,
-        'keywords':keywords.keywords[command.environment.name],
+        'keywords':keywords.keywords['keywords'],
         'color_keywords': keywords.keywords['color'],
         'readonly': readonly,
         'urlref_list':urlref_list

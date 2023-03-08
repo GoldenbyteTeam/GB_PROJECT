@@ -46,7 +46,6 @@ urlpatterns = [
     path('accounts/',include('accounts.urls')),
     path('catalogue/',include('catalogue.urls')),
     re_path(r'cmd/',include('clicommands.urls')),
-    #path('{}_{}/'.format(get_hash_from_quotes(hash_lenght=10),gb_admin_page), admin.site.urls),
     path('admin/',admin.site.urls),
     re_path(r"^chaining/", include("smart_selects.urls")),
 ]  + static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
