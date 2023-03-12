@@ -29,6 +29,7 @@ class Profile(models.Model):
     facebook_url = models.URLField(max_length=200,null=True,blank=True)
     instagram_url = models.URLField(max_length=200,null=True,blank=True)
     linkedin_url = models.URLField(max_length=200,null=True,blank=True)
+    is_published = models.BooleanField(default=True,name="Published",help_text="(add profile to contributors)")
 
     def __str__(self):
         return self.user.username

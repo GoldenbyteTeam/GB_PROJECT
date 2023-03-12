@@ -49,6 +49,18 @@
                         <p class="mb-4">{{profile.bio}} </p>
                         <button class="btn btn-outline-primary px-4"><a href="{% url 'password'%}">Change Password</a></button>
                         <!--<button class="btn btn-outline-primary px-4"><a href="">Change Avocato</a></button> -->
+
+                        <div class="mx-auto p-3"">
+
+                            <p class="mb-4">
+                                Contributors visibility:
+                                <i class="fas fa-circle"
+                         {% if profile.Published %}
+                            style="color:#32CD32"
+                         {% else %}
+                            style="color:#FF4500"
+                         {% endif %}></i></p>
+                        </div>
                     </div>
                     <div class="col-lg-6 col-sm-6">
                         <div class="form-group">

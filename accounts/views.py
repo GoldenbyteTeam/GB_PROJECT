@@ -1,6 +1,7 @@
 from django.shortcuts import redirect,render
 
 from django.contrib import messages,auth
+
 from django.contrib.auth.views import PasswordChangeView
 from django.contrib.auth.decorators import login_required
 
@@ -17,6 +18,7 @@ from django.utils.http import urlsafe_base64_decode
 from django.utils.encoding import force_str # force_text on older versions of Django
 
 from .forms import SignUpForm, token_generator, user_model, EditProfileInfoForm, CustomChangingPassword
+
 #from .models import Profile
 
 # Create your views here.
@@ -103,8 +105,13 @@ def dashboard(request):
     else:
         return redirect('login')
 @login_required
-def profile(request):
-    profile = request.user.profile
+def profile(request, user_id=0):
+    if not user_id:
+        profile = request.user.profile
+    else:
+        user = user_model.objects.get(pk=user_id)
+        profile =  user.profile
+
     context = {
         'profile':profile
     }
@@ -122,6 +129,7 @@ def edit_profile(request):
         }
         return render(request, 'accounts/updateprofile.html', context)
     else:
+
         Profileform = EditProfileInfoForm(request.POST,instance=profile)
         if Profileform.is_valid():
             Profileform.save()
@@ -136,3 +144,24 @@ class CustomPasswordChangeView(PasswordChangeView):
     def form_invalid(self, form):
         messages.error(self.request, 'Your password has NOT been changed.')
         return super().form_invalid(form)
+@login_required
+def contributors(request):
+    User = auth.get_user_model()
+    UsersList = User.objects.all().order_by('username')
+    users_cmds = Command.objects.all().order_by('cmd_date')
+
+    profile_to_public = []
+
+    for user in UsersList:
+        if user.profile.Published == False:
+            continue
+        for command in users_cmds:
+            if str(command.owner) == str(user.profile):
+                profile_to_public.append(user.profile)
+
+    context = {
+        'profiles': list(dict.fromkeys(profile_to_public)) # remove doulicates from the list by converting into dict
+    }
+
+    return render(request, 'pages/contributors.html',context)
+

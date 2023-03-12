@@ -27,15 +27,23 @@
                 </div>
 
                 <div class="text-center mt-3">
-                    {%if user.is_staff %}
+                    {%if profile.user.is_staff %}
                         <span class="bg-secondary p-1 px-4 rounded text-white">Staff</span>
                     {% endif %}
-                    <hr class="divider my-4" >
-                    {%if user.first_name|length %}
-                        <h5 class="mt-2 mb-0">{{user.first_name}} {{user.last_name}}</h5>
-                    {% else %}
-                        <h5 class="mt-2 mb-0">{{user.username}}</h5>
+                    {% if profile.user == user %}
+                    <div class="mx-auto">
+                            <p class="mb-4 p-3">
+                                Contributors visibility:
+                                <i class="fas fa-circle"
+                         {% if profile.Published %}
+                            style="color:#32CD32"
+                         {% else %}
+                            style="color:#FF4500"
+                         {% endif %}></i></p>
+                        </div>
                     {% endif %}
+                    <hr class="divider my-4" >
+                    <h5 class="mt-2 mb-0">{{profile}}</h5>
                     {%if profile.jobtitle|length %}
                             <span>{{profile.jobtitle}}</span>
                     {%endif%}
@@ -59,10 +67,10 @@
                             <a href="{{profile.linkedin_url}}" target="_blank"><li class="px-2"><i class="fab fa-linkedin"></i></li></a>
                          {%endif%}
                     </ul>
-
                     <div class="prf_buttons">
-
+                    {% if profile.user == user %}
                         <button class="btn btn-outline-primary px-4"><a href="{% url 'edit_profile' %}">Edit profile</a></button>
+                    {%endif%}
                     </div>
                 </div>
             </div>
