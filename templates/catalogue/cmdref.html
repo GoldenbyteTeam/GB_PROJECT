@@ -1,0 +1,118 @@
+{% extends 'base.html'  %}
+
+{% block title %} | CMD {% endblock %}
+
+{% load crispy_forms_tags %}
+
+{% block content %}
+  <section id="showcase-inner" class="py-5 text-white" style="position: relative">
+    <div class="container">
+      <div class="row text-center">
+        <div class="col-md-12">
+          <h1 class="display-4" style="color:white">Do you like dark ? <i class="fas fa-ghost"></i></h1>
+          <p class="lead"><b style="color:#ff6b01">GB</b> Commands Dashboard</p>
+            {% if user.is_authenticated  %}
+                <a class="btn rounded-pill"  style="width:250px" href="{% url 'addcmd' %}">Add Command</a>
+            {% endif %}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Delete confirm form -->
+  <div class="modal fade" id="inquiryModal" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="inquiryModalLabel"><p class="text-center">Are you sure to delete this command?</p></h5>
+          <button type="button" class="close" data-dismiss="modal">
+            <span>&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form action="delete/{{ command.id }}" method="post">
+            {%csrf_token%}
+              <p>{{ command.command }}</p>
+              <button type="submit" class="btn btn-danger">Delete</button>
+              <a class="btn btn-light" data-dismiss="modal">Cancel</a>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+<!--   Delete confirm Form -->
+
+<div class="container">
+        {% if readonly %}
+            <main role="main">
+                <div class="starter-template">
+                    <h5 class="command-align" style="color:#FF6B01">{{ command.catalogue.default_hostname }}</h5>
+                    <h5 class="command-align">&nbsp;{{ command.opmode }}</h5>
+                    {% for item in cmd_parsing_list %}
+                        <h5 class="command-align" style="color:
+                            {% if item in keywords %}
+                                {{color_keywords}}">{{item}}
+                             {% else %}
+                                black">{{item}}
+                             {% endif %}
+                        </h5>
+                    {% endfor %}
+                </div>
+                <hr/>
+                <div class="view-container">
+                     <div>
+                        <small class="text-tags">Related tags:&nbsp;</small>
+                    </div>
+                    <div>
+                        {% for tag in command.tags.all %}
+                            <button id="tag-button"type="button" class="btn btn-warning btn-sm" >{{ tag }}</button>
+                        {% endfor %}
+                    </div>
+                </div>
+            </main>
+            <div class="view-container">
+                <!-- dummy DIV -->
+            </div>
+
+            <div id="cmd-descr">
+                <p>{{ command.description }}</p>
+            </div>
+            <hr/>
+            <div id="cmd-refs">
+                {% if urlref_list|first %}
+                    <h5>External references:</h5>
+                <ul>
+                    {% for urlref in urlref_list %}
+                        {% if urlref %}
+                            <li><a href="{{urlref}}">{{urlref}}</a></li>
+                        {% endif %}
+                    {% endfor %}
+                </ul>
+                {% endif %}
+            </div>
+        {% else %}
+
+        <div class="form-group">
+            {% if new %}
+                <form action="add" method="post">
+            {% else %}
+                <form action="edit/{{ command.id }}" method="post">
+            {% endif %}
+            {%csrf_token%}
+            {{ form.media.js }}                 <!--Django Smart Select-->
+            {{form |crispy}}
+            <button type="submit" class="btn btn-primary">Submit</button>
+            <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#inquiryModal"
+            {% if new %}
+                disabled
+            {% endif %}
+            >Delete</button>
+        </div>
+        </form>
+<!--    <button class="btn btn-danger" data-toggle="modal" data-target="#inquiryModal">Delete</button>-->
+    {% endif %}
+</div>
+
+
+{% endblock  %}
+

@@ -1,0 +1,81 @@
+{% extends 'base.html'  %}
+
+{% block title %} | Profile {% endblock %}
+
+{% block content %}
+  <section id="showcase-inner" class="py-5 text-white" style="position: relative;
+    bottom: -37px;">
+    <div class="container">
+      <div class="row text-center">
+        <div class="col-md-12">
+          <h1 class="display-4" style="color:white">Do you like dark ? <i class="fas fa-ghost"></i></h1>
+        </div>
+      </div>
+    </div>
+  </section>
+
+<div class="container mt-5">
+    {% include 'partials/_alerts.html' %}
+    <div class="row d-flex justify-content-center">
+
+        <div class="col-md-7">
+
+            <div class="prf_card p-3 py-4">
+
+                <div class="text-center">
+                    <img src="/media/{{profile.avatar}}" width="150"  height="150" class="rounded-circle">
+                </div>
+
+                <div class="text-center mt-3">
+                    {%if profile.user.is_staff %}
+                        <span class="bg-secondary p-1 px-4 rounded text-white">Staff</span>
+                    {% endif %}
+                    {% if profile.user == user %}
+                    <div class="mx-auto">
+                            <p class="mb-4 p-3">
+                                Contributors visibility:
+                                <i class="fas fa-circle"
+                         {% if profile.Published %}
+                            style="color:#32CD32"
+                         {% else %}
+                            style="color:#FF4500"
+                         {% endif %}></i></p>
+                        </div>
+                    {% endif %}
+                    <hr class="divider my-4" >
+                    <h5 class="mt-2 mb-0">{{profile}}</h5>
+                    {%if profile.jobtitle|length %}
+                            <span>{{profile.jobtitle}}</span>
+                    {%endif%}
+                    {%if profile.website_url|length %}
+                            <a href="{{profile.website_url}}" target="_blank"><ul class="px-2"><i class="fa fa-globe"></i> {{profile.website_url}}</ul></a>
+                    {%endif%}
+                    <hr class="divider my-4" >
+                    <div class="px-4 mt-1">
+                        <p class="mb-4">{{profile.bio}} </p>
+
+                    </div>
+
+                     <ul class="prf_social-list">
+                         {%if profile.facebook_url|length %}
+                            <a href="{{profile.facebook_url}}" target="_blank"><li class="px-2"><i class="fab fa-facebook"></i></li></a>
+                         {%endif%}
+                         {%if profile.instagram_url|length %}
+                            <a href="{{profile.instagram_url}}" target="_blank"><li class="px-2"><i class="fab fa-instagram"></i></li></a>
+                         {%endif%}
+                         {%if profile.linkedin_url|length %}
+                            <a href="{{profile.linkedin_url}}" target="_blank"><li class="px-2"><i class="fab fa-linkedin"></i></li></a>
+                         {%endif%}
+                    </ul>
+                    <div class="prf_buttons">
+                    {% if profile.user == user %}
+                        <button class="btn btn-outline-primary px-4"><a href="{% url 'edit_profile' %}">Edit profile</a></button>
+                    {%endif%}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+{% endblock  %}

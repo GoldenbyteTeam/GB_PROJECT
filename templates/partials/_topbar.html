@@ -1,0 +1,86 @@
+{% load static %}
+<!-- Navigation-->
+        <nav id="mainNav"class="navbar navbar-expand-lg navbar-light py-3 navbar-scrolled
+		    {% if 'catalogue' in request.path %}
+	     		sticky-top
+	     	    {%else%}
+	     		fixed-top
+		{%endif%}
+		"
+        {% if 'accounts' in request.path or 'catalogue' in request.path or 'cmd' in request.path  %}
+                style="background-color:#FF6B01;"
+            {%endif%}>
+            <div class="container">
+				<a href="{% url 'index' %}"> <img src="{% static 'assets/img/LOGO_GB_NB.png' %}" width="120" height="80" alt="Goldenbyte logo"></a>
+		{% if 'catalogue' in request.path %}
+		<img class="img-rounded img-catalogue-searchbar"  src="{{catalogue.image_catalogue.url}}" alt="{{ catalogue.title }}" />
+		  <form action="{% url 'search' catalogue.id %}">
+            <!-- Form Row 1 -->
+            <div class="form-row">
+              <div class="col-md-4 mb-3">
+                <label class="sr-only">Keywords</label>
+                <input type="text" name="keywords" class="form-control" placeholder="Keyword (show, acl, etc)"
+                  {% if 'search' in request.path %}
+                    value="{{ values.keywords }}"
+                  {%endif%}
+                >
+              </div>
+
+              <div class="col-md-4 mb-3">
+                <label class="sr-only">Catalogue</label>
+		        <input type="text" name="Appliance" class="form-control" placeholder="{{catalogue.title}}" readonly>
+              </div>
+              <div class="col-md-4 mb-3">
+                <label class="sr-only">Tags</label>
+		        <input type="text" name="tags" class="form-control" placeholder="Tags"
+                {% if 'search' in request.path %}
+                    value="{{ values.tags }}"
+                {%endif%}
+                  >
+              </div>
+              <button class="btn btn-secondary btn-block mt-4" type="submit">Submit form</button>
+	        </div>
+          </form>
+          {% elif 'account' in request.path or 'cmd' in request.path%}
+            <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ml-auto my-2 my-lg-0">
+                {% if user.is_authenticated  and 'check' not in request.path and 'MTM' not in request.path %}
+
+                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="{% url 'dashboard' %}"> Welcome {{user.username}} (Dashboard)</a></li>
+                    <li class="nav-item">
+                        <div class="cus-dropdown">
+                            <a href="#" class="cus-dropbtn nav-link"><i class="fas fa-bars"></i> Manage </a>
+                            <div class="cus-dropdown-content">
+                                {% if user.is_staff %}
+                                    <a href="{% url 'admin:index'%}"target="_blank"><i class="fas fa-toolbox"></i> Administration </a>
+                                {%endif%}
+                                <a href="{% url 'users-profile'%}"><i class="far fa-id-card"></i> Profile </a>
+                                <a href="{% url 'contributors'%}"><i class="fas fa-universal-access"></i> Contributors </a>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="nav-item"><a href="javascript:{document.getElementById('logout').submit()}" class="nav-link"><i class="fas fa-sign-out-alt"></i> Logout </a></li>
+                    <form action="{%url 'logout'%}" method="POST" id="logout">
+                        {%csrf_token%}
+                        <input type="hidden">
+                    </form>
+                    {%endif%}
+                </ul>
+
+            </div>
+        </div>
+	        {% else %}
+                <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav ml-auto my-2 my-lg-0">
+                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#about">Mission</a></li>
+                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#services">Explore</a></li>
+                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#portfolio">Commands</a></li>
+                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#contacts">Login</a></li>
+                    </ul>
+		        </div>
+		    </div>
+                    {%endif%}
+        </nav>
+

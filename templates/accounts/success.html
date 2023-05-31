@@ -1,0 +1,40 @@
+{% extends 'base.html'%}
+
+{% block title %} | account verified {% endblock %}
+
+{% block content %}
+<section class="page-section bg-primary" style="padding:0">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-8 text-center">
+                <hr class="divider light my-4" />
+<!--                <p class="text-white-50 mb-4"><b>WELCOME BACK</b></p>-->
+                <hr class="divider light my-4" />
+            </div>
+        </div>
+    </div>
+</section>
+<section id="register" class="bg-light py-5">
+    <h1>Account activated</h1>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6 mx-auto">
+          <div class="card">
+            <div class="card-header bg-primary text-white">
+              <h4>
+                <i class="fa fa-check"></i>Verification Complete</h4>
+            </div>
+            <div class="card-body">
+                    <!-- Alerts -->
+                    {% include 'partials/_alerts.html' %}
+                    <div class="mx-auto text-center">
+                        <p>Great! Your account has been validated.</p>
+                        <p><a class="btn btn-light text-orange btn-xl" href="{% url 'dashboard' %}">Go to Dashboard</a></p>
+                    </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+{% endblock %}

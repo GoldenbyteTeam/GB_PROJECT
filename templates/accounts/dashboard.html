@@ -1,0 +1,108 @@
+{% extends 'base.html'  %}
+
+{% block title %} | Dashboard {% endblock %}
+
+{% block content %}
+
+
+  <section id="showcase-inner" class="py-5 text-white" style="position: relative;
+    bottom: -37px;">
+    <div class="container">
+      <div class="row text-center">
+        <div class="col-md-12">
+          <h1 class="display-4" style="color:white">Do you like dark ? <i class="fas fa-ghost"></i></h1>
+          <p class="lead"><b style="color:#ff6b01">GB</b> Commands Dashboard</p>
+          <a class="btn rounded-pill"  style="width:250px" href="{% url 'addcmd' %}">Add Command</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Breadcrumb -->
+  <section id="bc" class="mt-3">
+    <div class="container">
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item">
+                  <a href="{%url 'index'%}">
+              <i class="fas fa-home"></i> Home</a>
+          </li>
+          <li class="breadcrumb-item active"> Dashboard</li>
+        </ol>
+      </nav>
+    </div>
+  </section>
+  <!--  Alerts-->
+  {% include 'partials/_alerts.html' %}
+  <!--  Alerts-->
+  <!-- Delete confirm form
+  <div class="modal fade" id="inquiryModal" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="inquiryModalLabel">Are you sure to delete?</h5>
+          <button type="button" class="close" data-dismiss="modal">
+            <span>&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form action="deletecmd/{{ command.id }}" method="post">
+            <hr>
+            <h1>{{command.command}}</h1>
+            {%csrf_token%}
+              <button type="submit" class="btn btn-danger">Delete</button>
+              <a  class="btn btn-light" data-dismiss="modal">Cancel</a>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+   Delete confirm Form -->
+  <section id="dashboard" class="py-4">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          {% if user_commands|length > 0 %}
+            <table class="table">
+              <thead>
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">Command</th>
+                  <th scope="col">Catalogue</th>
+                  <th></th>
+                  <th></th>
+
+                </tr>
+              </thead>
+              <tbody>
+                {% for command in user_commands %}
+                <tr>
+                  <td>{{command.id}}</td>
+                  <td>{{command.command}}</td>
+                  <td>{{command.environment}}</td>
+                  <td><i class="fas fa-circle"
+                         {% if command.is_published %}
+                            style="color:#32CD32"
+                         {% else %}
+                            style="color:#FF4500"
+                         {% endif %}
+                  ></i></td>
+                  <td>
+                    <a class="btn btn-light" href="{% url 'editcmd' command.id%}">Edit Command</a>
+                    <!--<button id="link-cmd-trash"class="btn" data-toggle="modal" data-target="#inquiryModal"><i id="cmd-trash" class="fa fa-trash" aria-hidden="true"></i></button>-->
+                  </td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          {% else %}
+            <p>No CLI-Commands submitted yet</p>
+          <i class="fas fa-6x fa-sad-tear text-primary mb-4"></i>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+ {% endblock  %}
