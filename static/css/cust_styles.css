@@ -1,0 +1,237 @@
+
+.img-catalogue-searchbar {
+	border-radius: 45px;
+	max-height: 120px;
+	max-width: 120px;
+}
+.buttons-cmdlist {
+	border: none;
+	border-radius: 8px;
+	background-color: #FFF000;
+}
+
+.buttons-cmdlist:hover {
+	border: none;
+	border-radius: 8px;
+	background-color: #FF6B01;
+}
+.cmd-th {
+    font-family: Arial, Helvetica, sans-serif;
+    color: #FF6B01;
+}
+
+.form-group-insert {
+  float: left;
+  width: 50%;
+  padding: 10px;
+  height: 500px;
+}
+
+.row_cmd_submit:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+#cmd-trash, #link-cmd-trash {
+  background-color: #FF4500;
+}
+
+.tags-catalogue
+{
+    table-layout: fixed;
+    width: 35%;
+}
+.asteriskField {
+    display: none;
+}
+#div_id_catalogue,#div_id_environment,#div_id_opmode,#div_id_command {
+    color: red;
+}
+
+select {
+   box-sizing: border-box;
+  // A reset of styles, including removing the default dropdown arrow
+  appearance: none;
+  background-color: transparent;
+  height: 40px;
+  border-radius: 5px;
+  padding: 0 1em 0 0;
+  margin: 0;
+  width: 100%;
+  font-family: inherit;
+  font-size: inherit;
+  cursor: default;
+  line-height: inherit;
+
+  // Stack above custom arrow
+  z-index: 1;
+
+  // Remove dropdown arrow in IE10 & IE11
+  // @link https://www.filamentgroup.com/lab/select-css.html
+  &::-ms-expand {
+    display: none;
+  }
+
+  // Remove focus outline, will add on alternate element
+  outline: none;
+}
+.starter-template div {
+    float: left;
+    clear: none;
+  }
+#tag-button {
+    background-color: #FEF000;
+  }
+.view-container {
+  position: relative;
+  height: 100px;
+
+}
+.text-tags {
+padding-top:5px
+}
+.command-align{
+    display: inline;
+}
+#cmd-descr{
+    position: relative;
+    padding-bottom: 5%;
+}
+#cmd-refs{
+    text-align:left
+}
+
+/*****W3School Navbar DropDownMenu********/
+/* The dropdown container */
+.cus-dropdown {
+  float: left;
+  overflow: hidden;
+}
+
+/* Dropdown button */
+.cus-dropdown .dropbtn {
+  font-size: 16px;
+  border: none;
+  outline: none;
+  color: white;
+  padding: 14px 16px;
+  background-color: inherit;
+  font-family: inherit; /* Important for vertical align on mobile phones */
+  margin: 0; /* Important for vertical align on mobile phones */
+}
+
+/* Dropdown content (hidden by default) */
+.cus-dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+/* Links inside the dropdown */
+.cus-dropdown-content a {
+  float: none;
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+}
+
+
+/* Add a grey background color to dropdown links on hover */
+.cus-dropdown-content a:hover {
+  background-color: #ddd;
+}
+
+/* Show the dropdown menu on hover */
+.cus-dropdown:hover .cus-dropdown-content {
+  display: block;
+}
+/*****https://bbbootstrap.com/snippets/bootstrap-5-user-social-profile-transition-effect-79746232********/
+prf_body{
+    background:#eee;
+}
+
+.prf_card{
+    border:none;
+
+    position:relative;
+    overflow:hidden;
+    border-radius:8px;
+}
+
+/**.prf_card:before{
+
+    content:"";
+    position:absolute;
+    left:0;
+    top:0;
+    width:4px;
+    height:100%;
+    background-color:#E1BEE7;
+    transform:scaleY(1);
+    transition:all 0.5s;
+    transform-origin: bottom
+}
+
+.prf_card:after{
+
+    content:"";
+    position:absolute;
+    left:0;
+    top:0;
+    width:4px;
+    height:100%;
+    background-color:#8E24AA;
+    transform:scaleY(0);
+    transition:all 0.5s;
+    transform-origin: bottom
+}
+
+.prf_card:hover::after{
+    transform:scaleY(1);
+}
+**/
+
+.prf_fonts{
+    font-size:11px;
+}
+
+.prf_social-list{
+    display:flex;
+    list-style:none;
+    justify-content:center;
+    padding:0;
+}
+
+.prf_social-list prf_li{
+    padding:10px;
+    color:#8E24AA;
+    font-size:19px;
+}
+
+
+.prf_buttons prf_button:nth-child(1){
+       border:1px solid #8E24AA !important;
+       color:#8E24AA;
+       height:40px;
+}
+
+.prf_buttons prf_button:nth-child(1):hover{
+       border:1px solid #8E24AA !important;
+       color:#fff;
+       height:40px;
+       background-color:#8E24AA;
+}
+
+.prf_buttons prf_button:nth-child(2){
+       border:1px solid #8E24AA !important;
+       background-color:#8E24AA;
+       color:#fff;
+        height:40px;
+}
+/********************************************************************************************************/
